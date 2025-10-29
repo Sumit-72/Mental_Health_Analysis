@@ -14,7 +14,7 @@ streamlit
 beautifulsoup4
 lxml
 contractions
-emoji
+emoji==1.7
 wordninja
 autocorrect
 clean-text

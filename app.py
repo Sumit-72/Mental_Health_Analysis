@@ -21,9 +21,7 @@ from autocorrect import Speller
 import torch
 from sentence_transformers import SentenceTransformer
 import io
-import pathlib   
-temp = pathlib.PosixPath   
-pathlib.PosixPath = pathlib.WindowsPath
+import pathlib
 
 # ================================================================
 # CUSTOM CLASSES (MUST BE DEFINED BEFORE MODEL LOADING)
@@ -335,6 +333,11 @@ def load_production_model():
         torch.load = torch_load_cpu
         
         # Now load the model - all torch tensors will be mapped to CPU
+        if hasattr(pathlib, "WindowsPath"):
+            pathlib.PosixPath = pathlib.WindowsPath
+        else:
+            pathlib.PosixPath = pathlib.Path
+
         model_data = joblib.load("production_mental_health_model.pkl")
         
         # Restore original torch.load
