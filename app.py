@@ -255,9 +255,61 @@ st.markdown("""
         color: #2d3748 !important;
     }
     
-    /* Radio and select inputs */
+    /* Selectbox - white background with dark text */
+    .stSelectbox>div>div {
+        background-color: white !important;
+    }
+    
+    .stSelectbox>div>div>div {
+        background-color: white !important;
+        color: #2d3748 !important;
+    }
+    
+    /* Selectbox input field */
+    .stSelectbox input {
+        background-color: white !important;
+        color: #2d3748 !important;
+    }
+    
+    /* Selectbox dropdown menu */
+    [data-baseweb="popover"] {
+        background-color: white !important;
+    }
+    
+    [data-baseweb="menu"] {
+        background-color: white !important;
+    }
+    
+    /* Dropdown options */
+    [role="option"] {
+        background-color: white !important;
+        color: #2d3748 !important;
+    }
+    
+    /* Dropdown option on hover */
+    [role="option"]:hover {
+        background-color: #f5f7fa !important;
+        color: #2d3748 !important;
+    }
+    
+    /* Dropdown option selected */
+    [aria-selected="true"] {
+        background-color: #e6f0ff !important;
+        color: #2d3748 !important;
+    }
+    
+    /* Radio and select labels */
     .stRadio label,
     .stSelectbox label {
+        color: #2d3748 !important;
+    }
+    
+    /* Radio button options */
+    .stRadio>div {
+        background-color: white !important;
+    }
+    
+    .stRadio>div>label>div {
         color: #2d3748 !important;
     }
     
@@ -311,7 +363,6 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
-
 # ==============================================================
 # LOAD MODEL WITH CPU MAPPING
 # ==============================================================
@@ -332,7 +383,7 @@ def load_production_model():
         torch.load = torch_load_cpu
         
         # Now load the model - all torch tensors will be mapped to CPU
-        model_data = joblib.load("production_mental_health_model.pkl")
+        model_data = joblib.load("production_mental_health_model_1.pkl")
         
         # Restore original torch.load
         torch.load = original_torch_load
